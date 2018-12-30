@@ -3,9 +3,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :locations, only: [:index, :show, :update] do
         resources :events, only: [:index, :show, :update]
+        resources :whens, only: [:index, :show, :update]
       end
       resources :whens, only: [:index, :show, :update] do
         resources :events, only: [:index, :show, :update]
+        resources :locations, only: [:index, :show, :update]
       end
       resources :events, only: [:index, :show, :update]
     end

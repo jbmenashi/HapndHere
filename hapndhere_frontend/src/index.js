@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   app.attachEventListeners();
 
   const locationsURL = 'http://localhost:3000/api/v1/locations'
-  const locationsList = document.querySelector('#locations-list')
   let allLocations = []
 
   const fetchLocations = () => {
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const showAllLocations = (allLocations) => {
     allLocations.forEach(location => {
       const newLocation = new Location(location)
-      locationsList.innerHTML += newLocation.renderListItem()
     })
   }
 
