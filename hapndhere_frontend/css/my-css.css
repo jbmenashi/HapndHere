@@ -1,0 +1,46 @@
+.site-title {
+  border: 3px solid black;
+  margin: 5px auto;
+  width: 400px;
+  text-align: center;
+  font-size: 50px;
+}
+
+.date-select {
+  border: 3px solid blue;
+  margin: 5px auto;
+  width: 300px;
+  height: 35px;
+}
+
+.map-area {
+  float: left;
+  border: 3px solid red;
+  margin: 5px 5px 10px 20px;
+  width: 875px;
+  height: 500px;
+}
+
+.add-event {
+  float: right;
+  border: 3px solid green;
+  margin: 5px 20px 5px 5px;
+  width: 485px;
+  height: 245px;
+}
+
+.event-info {
+  float: right;
+  border: 3px solid yellow;
+  margin: 5px 20px 10px 5px;
+  width: 485px;
+  height: 245px;
+}
+
+.location-info {
+  border: 3px solid purple;
+  margin: auto;
+  width: 1000px;
+  height: 100px;
+  clear: left;
+}

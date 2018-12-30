@@ -1,8 +1,12 @@
 class Api::V1::EventsController < ApplicationController
-  before_action :find_event, only: [:update]
+  before_action :find_event, only: [:show, :update]
   def index
     @events = Event.all
     render json: @events
+  end
+
+  def show
+    render json: @event
   end
 
   def update
@@ -17,7 +21,7 @@ class Api::V1::EventsController < ApplicationController
   private
 
   def event_params
-    params.permit(:city, :state)
+    params.permit(:location_id, :when_id, :title, :info, :img_url)
   end
 
   def find_event

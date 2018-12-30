@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_12_30_204806) do
   end
 
   create_table "whens", force: :cascade do |t|
-    t.datetime "date_and_time"
+    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

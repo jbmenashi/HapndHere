@@ -12,7 +12,7 @@ class Location {
     return `
     <li>
       <h3>${this.city}
-        <button data-id=${this.id}>edit</button>
+        <button class="btn btn-primary" data-id=${this.id}>edit</button>
       </h3>
     </li>`;
   }

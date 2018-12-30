@@ -1,8 +1,12 @@
 class Api::V1::LocationsController < ApplicationController
-  before_action :find_location, only: [:update]
+  before_action :find_location, only: [:show, :update]
   def index
     @locations = Location.all
     render json: @locations
+  end
+
+  def show
+    render json: @location
   end
 
   def update
@@ -17,7 +21,7 @@ class Api::V1::LocationsController < ApplicationController
   private
 
   def location_params
-    params.permit(:city, :state)
+    params.permit(:city, :state, :latitude, :longitude)
   end
 
   def find_location

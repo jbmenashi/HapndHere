@@ -2,12 +2,38 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/my-css.css" rel="stylesheet">
     <title>HapndHere</title>
     <script src="src/index.js" charset="utf-8"></script>
     <script src="src/location.js" charset="utf-8"></script>
     <script src="src/app.js" charset="utf-8"></script>
   </head>
   <body>
+    <div class="site-title">
+      HapndHere
+    </div>
+    <div class="date-select">
+      <form name="date-form" class="form-group" action="index.html" method="post">
+        <label for="start">Select Date:</label>
+        <input type="date" id="start" name="trip-start" min="2018-01-01" max="2018-12-31">
+        <button type="submit" name="button">Submit</button>
+      </form>
+    </div>
+    <div class="map-area">
+      map
+    </div>
+    <div class="add-event">
+      add event
+    </div>
+    <div class="event-info">
+      event info
+    </div>
+    <div class="location-info">
+      events at this location
+    </div>
     <ul id='locations-list'></ul>
     <div id='update'></div>
 

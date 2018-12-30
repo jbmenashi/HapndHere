@@ -1,8 +1,12 @@
-class Api::V1::WhenController < ApplicationController
-  before_action :find_when, only: [:upwhen]
+class Api::V1::WhensController < ApplicationController
+  before_action :find_when, only: [:show, :update]
   def index
     @whens = When.all
     render json: @whens
+  end
+
+  def show
+    render json: @when
   end
 
   def update
@@ -17,7 +21,7 @@ class Api::V1::WhenController < ApplicationController
   private
 
   def when_params
-    params.permit(:city, :state)
+    params.permit(:date)
   end
 
   def find_when
