@@ -13,6 +13,15 @@ class Api::V1::LocationsController < ApplicationController
     render json: @location.events
   end
 
+  def create
+    @location = Location.new(location_params)
+    if @location.save
+      render json: @location, status: :accepted
+    else
+      render json: { errors: @location.errors.full_messages }, status: :unprocessible_entity
+    end
+  end
+
   def update
     @location.update(location_params)
     if @location.save

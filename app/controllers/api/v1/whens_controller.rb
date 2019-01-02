@@ -1,5 +1,5 @@
 class Api::V1::WhensController < ApplicationController
-  before_action :find_when, only: [:show, :update, :locations]
+  before_action :find_when, only: [:show, :update, :locations, :events]
   def index
     @whens = When.all
     render json: @whens
@@ -11,6 +11,12 @@ class Api::V1::WhensController < ApplicationController
 
   def locations
     render json: @when.locations
+  end
+
+  def events
+    @location = Location.find(params[:location_id])
+    @events = Event.select {|event| event.when == @when && event.location == @location}
+    render json: @events
   end
 
   def create
