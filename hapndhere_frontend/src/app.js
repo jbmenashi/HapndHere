@@ -1,6 +1,20 @@
 class App {
   attachEventListeners() {
 
+    let foundLocation;
+
+    const fetchEventsByLocation = () => {
+      fetch(`http://localhost:3000/api/v1/locations/${foundLocation.id}/events`)
+      .then(response => response.json())
+      .then(data => {
+        document.querySelector('#list-of-events').innerHTML = ''
+        data.forEach(e => {
+          document.querySelector('#list-of-events').innerHTML += `
+                                                                  <li data-id="${e.id}">${e.title}</li>`
+        })
+      })
+    }
+
     document.addEventListener('submit', (event) => {
       event.preventDefault()
       if (event.target.id === "date-submit") {
@@ -44,15 +58,18 @@ class App {
         }
       }
       else if (event.target.id === "add-event-form") {
-        let foundLocation = Location.all.find(location => location.latitude == `${document.querySelector('#lat-input').value}`)
+        let foundWhen = When.all.find(when => when.date.includes(`${document.querySelector('#start').value}`))
+        foundLocation = Location.all.find(location => location.latitude == `${document.querySelector('#lat-input').value}`)
         if (foundLocation !== undefined) {
-          fetch(`http://localhost:3000/api/v1/locations/${foundLocation.id}/events`, {
+          fetch(`http://localhost:3000/api/v1/events`, {
             method: 'POST',
             headers: {
               'Content-Type':'application/json',
               'Accept':'application/json'
             },
             body: JSON.stringify({
+              when_id: foundWhen.id,
+              location_id: foundLocation.id,
               title: document.querySelector('#event-title-input').value,
               info: document.querySelector('#event-info-input').value,
               img_url: document.querySelector('#img-url-input').value
@@ -60,33 +77,25 @@ class App {
           })
           .then(response => response.json())
           .then(data => {
-            console.log(data);
             Event.all.push(data)
+            fetchEventsByLocation()
             event.target.reset()
           })
         }
         else {
-
+          console.log("didnt work");
         }
       }
     })
 
     document.addEventListener('click', (event) => {
       if (event.target.parentNode.id === "list-of-locations") {
-        let foundLocation = Location.all.find(location => location.id == event.target.dataset.id)
+        foundLocation = Location.all.find(location => location.id == event.target.dataset.id)
         document.querySelector('#city-input').value = foundLocation.city
         document.querySelector('#state-input').value = foundLocation.state
         document.querySelector('#lat-input').value = foundLocation.latitude
         document.querySelector('#long-input').value = foundLocation.longitude
-        fetch(`http://localhost:3000/api/v1/locations/${foundLocation.id}/events`)
-        .then(response => response.json())
-        .then(data => {
-          document.querySelector('#list-of-events').innerHTML = ''
-          data.forEach(e => {
-            document.querySelector('#list-of-events').innerHTML += `
-                                                                    <li data-id="${e.id}">${e.title}</li>`
-          })
-        })
+        fetchEventsByLocation()
       }
       else if (event.target.parentNode.id === "list-of-events") {
         let foundEvent = Event.all.find(e => e.id == event.target.dataset.id)

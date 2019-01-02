@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+
   fetchWhens()
   fetchLocations()
   fetchEvents()
