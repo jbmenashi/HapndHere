@@ -1,5 +1,5 @@
 class Api::V1::WhensController < ApplicationController
-  before_action :find_when, only: [:show, :update]
+  before_action :find_when, only: [:show, :update, :locations]
   def index
     @whens = When.all
     render json: @whens
@@ -7,6 +7,19 @@ class Api::V1::WhensController < ApplicationController
 
   def show
     render json: @when
+  end
+
+  def locations
+    render json: @when.locations
+  end
+
+  def create
+    @when = When.new(when_params)
+    if @when.save
+      render json: @when, status: :accepted
+    else
+      render json: { errors: @when.errors.full_messages }, status: :unprocessible_entity
+    end
   end
 
   def update

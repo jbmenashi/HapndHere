@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :locations, only: [:index, :show, :update] do
-        resources :events, only: [:index, :show, :update]
-        resources :whens, only: [:index, :show, :update]
-      end
-      resources :whens, only: [:index, :show, :update] do
-        resources :events, only: [:index, :show, :update]
-        resources :locations, only: [:index, :show, :update]
-      end
-      resources :events, only: [:index, :show, :update]
+      resources :events
+      resources :whens
+      resources :locations
+      get "/whens/:id/locations", to: "whens#locations"
+      get "/locations/:id/events", to: "locations#events"
+      post "/locations/:id/events", to: "locations#events"
     end
   end
 end

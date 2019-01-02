@@ -21,7 +21,7 @@
   height: 500px;
 }
 
-.add-event {
+.location-info {
   float: right;
   border: 3px solid green;
   margin: 5px 20px 5px 5px;
@@ -37,10 +37,30 @@
   height: 245px;
 }
 
-.location-info {
+.add-event {
   border: 3px solid purple;
   margin: auto;
-  width: 1000px;
-  height: 100px;
+  width: 400px;
+  height: 600px;
   clear: left;
+}
+
+#event-info-deets {
+  border: 3px solid green;
+  width: 230px;
+  float: left;
+}
+
+#event-info-image {
+  border: 3px solid green;
+  width: 230px;
+  float: left;
+}
+
+.add-event-form {
+  color: blue;
+}
+
+.form-control {
+  width: 100%;
 }

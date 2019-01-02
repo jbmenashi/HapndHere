@@ -1,5 +1,5 @@
 class Api::V1::LocationsController < ApplicationController
-  before_action :find_location, only: [:show, :update]
+  before_action :find_location, only: [:show, :update, :events]
   def index
     @locations = Location.all
     render json: @locations
@@ -7,6 +7,10 @@ class Api::V1::LocationsController < ApplicationController
 
   def show
     render json: @location
+  end
+
+  def events
+    render json: @location.events
   end
 
   def update
