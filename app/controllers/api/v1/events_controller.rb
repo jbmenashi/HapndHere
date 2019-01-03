@@ -1,5 +1,5 @@
 class Api::V1::EventsController < ApplicationController
-  before_action :find_event, only: [:show, :update]
+  before_action :find_event, only: [:show, :update, :destroy]
   def index
     @events = Event.all
     render json: @events
@@ -25,6 +25,10 @@ class Api::V1::EventsController < ApplicationController
     else
       render json: { errors: @event.errors.full_messages }, status: :unprocessible_entity
     end
+  end
+
+  def destroy
+    @event.destroy
   end
 
   private

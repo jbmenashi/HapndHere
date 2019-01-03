@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("DOM Content is Loaded boiiii")
 
   const app = new App();
   app.attachEventListeners();
