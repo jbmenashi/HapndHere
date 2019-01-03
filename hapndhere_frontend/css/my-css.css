@@ -13,7 +13,7 @@
   height: 35px;
 }
 
-.map-area {
+#map-area {
   float: left;
   border: 3px solid red;
   margin: 5px 5px 10px 20px;
@@ -59,8 +59,4 @@
 
 .add-event-form {
   color: blue;
-}
-
-.form-control {
-  width: 100%;
 }
