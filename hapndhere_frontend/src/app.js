@@ -21,7 +21,8 @@ class App {
       fetch(`http://localhost:3000/api/v1/whens/${when.id}/locations/${location.id}/events`)
       .then(response => response.json())
       .then(data => {
-        document.querySelector('#list-of-events').innerHTML = ''
+        document.querySelector('.location-info').innerHTML = `<h3>Events in ${location.city}, ${location.state}</h3>
+                                                              <ul id="list-of-events"></ul>`
         data.forEach(e => {
           document.querySelector('#list-of-events').innerHTML += `
                                                                   <li data-id="${e.id}">${e.title}</li>`
@@ -172,8 +173,8 @@ class App {
       if (event.target.parentNode.id === "list-of-events") {
         let foundEvent = Event.all.find(e => e.id == event.target.dataset.id)
         document.querySelector('.event-info').innerHTML = `<div id="event-info-deets"><h3>${foundEvent.title}</h3>
-                                                            <h4>${foundEvent.info}</h4></div>
-                                                            <div id="event-info-image"><img src="${foundEvent.img_url}" width="200px" height="200px">
+                                                            <p>${foundEvent.info}</p></div>
+                                                            <div id="event-info-image"><img src="${foundEvent.img_url}" width="200px" height="180px">
                                                             </div>
                                                             <div id="buttons" data-id="${foundEvent.id}">
                                                               <button id="edit-event" class="btn btn-warning btn-sm">Edit</button>
@@ -226,8 +227,8 @@ class App {
         .then(response => response.json())
         .then(data => {
           document.querySelector('.event-info').innerHTML = `<div id="event-info-deets"><h3>${data.title}</h3>
-                                                            <h4>${data.info}</h4></div>
-                                                            <div id="event-info-image"><img src="${data.img_url}" width="200px" height="200px">
+                                                            <p>${data.info}</p></div>
+                                                            <div id="event-info-image"><img src="${data.img_url}" width="200px" height="180px">
                                                             </div>
                                                             <div id="buttons" data-id="${data.id}">
                                                               <button id="edit-event" class="btn btn-warning btn-sm">Edit</button>
@@ -250,7 +251,7 @@ class App {
             <textarea class="form-control" id="event-info-input" name="event-info" value=""></textarea>
             <label for="img-url">Image:</label>
             <input type="text" class="form-control" id="img-url-input" name="img-url" value=""><br>
-          <button type="submit" class="btn btn-default" name="button">Submit</button>
+          <button type="submit" class="btn btn-success" name="button">Submit</button>
         </form>`
       }
     })
