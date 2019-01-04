@@ -86,6 +86,19 @@ class App {
           .then(response => response.json())
           .then(data => {
             When.all.push(data)
+            mymap.on('click', e => {
+              document.querySelector('#list-of-events').innerHTML = ''
+              document.querySelector('.event-info').innerHTML = `<h3>Event Info:</h3>`
+              document.querySelector('#add-event-form').reset()
+              let infoPopup = L.popup()
+              infoPopup.setLatLng(e.latlng).setContent("Add An Event To This Location Below!").openOn(mymap)
+              document.querySelector('#lat-input').value = e.latlng.lat
+              document.querySelector('#long-input').value = e.latlng.lng
+            });
+            markersLayerGroup.clearLayers()
+            document.querySelector('#add-event-form').reset()
+            document.querySelector('#list-of-events').innerHTML = ''
+            document.querySelector('.event-info').innerHTML = `<h3>Event Info:</h3>`
           })
         }
       }
