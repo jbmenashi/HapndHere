@@ -42,7 +42,7 @@ class App {
           .then(data => {
             mymap.on('click', e => {
               document.querySelector('#list-of-events').innerHTML = ''
-              document.querySelector('.event-info').innerHTML = `<h3>Event Info:</h3>`
+              document.querySelector('.event-info').innerHTML = `<h3>Event Info</h3>`
               document.querySelector('#add-event-form').reset()
               let infoPopup = L.popup()
               infoPopup.setLatLng(e.latlng).setContent("Add An Event To This Location Below!").openOn(mymap)
@@ -52,14 +52,14 @@ class App {
             markersLayerGroup.clearLayers()
             document.querySelector('#add-event-form').reset()
             document.querySelector('#list-of-events').innerHTML = ''
-            document.querySelector('.event-info').innerHTML = `<h3>Event Info:</h3>`
+            document.querySelector('.event-info').innerHTML = `<h3>Event Info</h3>`
             data.forEach(location => {
               let marker = L.marker([location.latitude, location.longitude]);
               markersLayerGroup.addLayer(marker).addTo(mymap)
               marker.on('click', e => {
                 marker.bindPopup(`${location.city}, ${location.state}`).openPopup();
                 document.querySelector('#list-of-events').innerHTML = ''
-                document.querySelector('.event-info').innerHTML = `<h3>Event Info:</h3>`
+                document.querySelector('.event-info').innerHTML = `<h3>Event Info</h3>`
                 document.querySelector('#city-input').value = location.city
                 document.querySelector('#state-input').value = location.state
                 document.querySelector('#lat-input').value = location.latitude
@@ -88,7 +88,7 @@ class App {
             When.all.push(data)
             mymap.on('click', e => {
               document.querySelector('#list-of-events').innerHTML = ''
-              document.querySelector('.event-info').innerHTML = `<h3>Event Info:</h3>`
+              document.querySelector('.event-info').innerHTML = `<h3>Event Info</h3>`
               document.querySelector('#add-event-form').reset()
               let infoPopup = L.popup()
               infoPopup.setLatLng(e.latlng).setContent("Add An Event To This Location Below!").openOn(mymap)
@@ -98,7 +98,7 @@ class App {
             markersLayerGroup.clearLayers()
             document.querySelector('#add-event-form').reset()
             document.querySelector('#list-of-events').innerHTML = ''
-            document.querySelector('.event-info').innerHTML = `<h3>Event Info:</h3>`
+            document.querySelector('.event-info').innerHTML = `<h3>Event Info</h3>`
           })
         }
       }
